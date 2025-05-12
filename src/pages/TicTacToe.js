@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { Link } from "react-router-dom";
 
 function Square({value, onSquareClick, classSquares}) {
   return <button className={`${classSquares == 'square' ? "square" : "squareWin"}`} onClick={onSquareClick}>{value}</button>;
@@ -91,6 +91,7 @@ const TicTacToe = () => {
       <div className="game-info">
          <ol>{moves.slice(0, moves.length-1)}</ol>
       </div>
+    <Link to="/">Home</Link>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import Blogs from "./pages/Blogs";
 import Contact from "./pages/Contact";
 import TicTacToe from "./pages/TicTacToe";
 import NoPage from "./pages/NoPage";
+import ThinkingReact from "./pages/ThinkingReact";
 import styles from "./style.css";
 
 function App() {
@@ -15,9 +16,11 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="blogs" element={<Blogs />} />
+          <Route path="thinkingReact" element={<ThinkingReact />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="tictactoe" element={<TicTacToe />} />
           <Route path="*" element={<NoPage />} />
+        </Route>
+        <Route path="/TicTacToe" element={<TicTacToe />}>
         </Route>
       </Routes>
     </BrowserRouter>

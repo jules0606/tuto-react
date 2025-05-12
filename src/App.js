@@ -6,6 +6,7 @@ function Square({value, onSquareClick, classSquares}) {
 
 function Board({ xIsNext, squares, onPlay, currentMove, classSquares}) {
   function handleClick(i) {
+        console.log(i)
     if (squares[i] ||  calculateWinner(squares)){
       return;
     }
@@ -25,31 +26,27 @@ function Board({ xIsNext, squares, onPlay, currentMove, classSquares}) {
     classSquares[winner[0]] = "squareWin";
     classSquares[winner[1]] = "squareWin";
     classSquares[winner[2]] = "squareWin";
-  } else {
+  } else if (currentMove < 9){
     status = "Next player: " + (xIsNext ? "X" : "O");
+  } else {
+    status = "The game is a draw";
   }
-    console.log(classSquares[0]);
 
-  return(
-  <>
-      <div className="status">{status}</div>
-      <div className="currentMove">current move is #{currentMove}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() =>handleClick(0)} classSquares={classSquares[0]} />
-        <Square value={squares[1]} onSquareClick={() =>handleClick(1)} classSquares={classSquares[1]}/>
-        <Square value={squares[2]} onSquareClick={() =>handleClick(2)} classSquares={classSquares[2]}/>
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() =>handleClick(3)} classSquares={classSquares[3]}/>
-        <Square value={squares[4]} onSquareClick={() =>handleClick(4)} classSquares={classSquares[4]}/>
-        <Square value={squares[5]} onSquareClick={() =>handleClick(5)} classSquares={classSquares[5]}/>
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() =>handleClick(6)} classSquares={classSquares[6]}/>
-        <Square value={squares[7]} onSquareClick={() =>handleClick(7)} classSquares={classSquares[7]}/>
-        <Square value={squares[8]} onSquareClick={() =>handleClick(8)} classSquares={classSquares[8]}/>
-      </div>
-  </>);
+  const getRows = _ => {
+    let content = [];
+    let squaresContent = [];
+    content.push(<div key="aa" className="status">{status}</div>);
+    content.push(<div key="bb" className="currentMove">current move is #{currentMove}</div>);
+    for(let y=0; y < 9; y++) {
+        squaresContent.push(<Square key={y} value={squares[y]} onSquareClick={() =>handleClick(y)} classSquares={classSquares[y]} />);
+    }
+    for (let i=0; i < 9; i=i+3) {
+      content.push(<div key={i} className="board-row">{squaresContent.slice(i,i+3)}</div>);
+    }
+    return content;
+  };
+
+  return <>{getRows()}</>;
 }
 
 export default function Game() {
@@ -68,6 +65,7 @@ export default function Game() {
 
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
+    setClassSquares(Array(9).fill('square')); // Considering the last move you can go back to can't be the "winning" move
   }
 
   const moves = history.map((squares, move) => {

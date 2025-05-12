@@ -6,6 +6,7 @@ import Blogs from "./pages/Blogs";
 import Contact from "./pages/Contact";
 import TicTacToe from "./pages/TicTacToe";
 import NoPage from "./pages/NoPage";
+import Gallery from "./pages/Gallery";
 import ThinkingReact from "./pages/ThinkingReact";
 import styles from "./style.css";
 
@@ -17,6 +18,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="thinkingReact" element={<ThinkingReact />} />
+          <Route path="Gallery" element={<Gallery />} />
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NoPage />} />
         </Route>

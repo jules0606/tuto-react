@@ -18,6 +18,9 @@ const Layout = () => {
             <Link to="/thinkingReact">ThinkingReact</Link>
           </li>
           <li>
+            <Link to="/Gallery">Gallery</Link>
+          </li>
+          <li>
             <Link to="/tictactoe">TicTacToe</Link>
           </li>
         </ul>
